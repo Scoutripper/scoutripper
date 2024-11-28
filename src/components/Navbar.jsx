@@ -40,31 +40,31 @@ const Navbar = () => {
         <div className="hidden flex-1 justify-center lg:flex">
           <ul className="flex items-center gap-5 text-white">
             <li>
-              <a href="">Home</a>
+              <a href="https://scoutripper.com/page/home" className=" font-sans">Home</a>
             </li>
             <li>
-              <a href="">Treks</a>
+              <a href="https://scoutripper.com/trek?location_id=&start=11%2F28%2F2024&end=11%2F29%2F2024&date=2024-11-28+-+2024-11-29" className=" font-sans">Treks</a>
             </li>
             <li>
-              <a href="">Explore</a>
+              <a href="https://scoutripper.com/blog/explore/" className=" font-sans">Explore</a>
             </li>
             <li>
-              <a href="">Cleanup Drive</a>
+              <a href="https://scoutripper.com/page/cleanup-drive" className=" font-sans">Cleanup Drive</a>
             </li>
             <li>
-              <a href="">Trek Essentials</a>
+              <a href="https://scoutripper.com/blog/trekking-essentials-guide/" className=" font-sans">Trek Essentials</a>
             </li>
           </ul>
         </div>
 
         {/* Desktop Buttons */}
         <div className="hidden gap-5 lg:flex">
-          <button className="rounded-md bg-white p-3 px-7 text-sm">
-            Become An Expert
+          <button className="rounded-md bg-white p-3 px-7 text-sm font-sans">
+            Send your Query
           </button>
-          <button className="rounded-md border border-white bg-transparent p-3 px-7 text-sm text-white">
+          {/* <button className="rounded-md border border-white bg-transparent p-3 px-7 text-sm text-white">
             Sign In / Register
-          </button>
+          </button> */}
         </div>
 
         {/* Mobile Menu Button */}
@@ -82,29 +82,29 @@ const Navbar = () => {
             {isMenuOpen ? <FiX /> : <FiMenu />}
           </button>
           <ul className="flex flex-col items-center gap-4">
-            <li>
-              <a href="">Home</a>
+          <li>
+              <a href="https://scoutripper.com/page/home" className=" font-sans">Home</a>
             </li>
             <li>
-              <a href="">Treks</a>
+              <a href="https://scoutripper.com/trek?location_id=&start=11%2F28%2F2024&end=11%2F29%2F2024&date=2024-11-28+-+2024-11-29" className=" font-sans">Treks</a>
             </li>
             <li>
-              <a href="">Explore</a>
+              <a href="https://scoutripper.com/blog/explore/" className=" font-sans">Explore</a>
             </li>
             <li>
-              <a href="">Cleanup Drive</a>
+              <a href="https://scoutripper.com/page/cleanup-drive" className=" font-sans">Cleanup Drive</a>
             </li>
             <li>
-              <a href="">Trek Essentials</a>
+              <a href="https://scoutripper.com/blog/trekking-essentials-guide/" className=" font-sans">Trek Essentials</a>
             </li>
           </ul>
           <div className="mt-5 flex flex-col gap-3">
             <button className="mx-auto rounded-md bg-white p-3 px-7 text-sm text-[#324B4C]">
               Become An Expert
             </button>
-            <button className="mx-auto rounded-md border border-white bg-transparent p-3 px-7 text-sm text-white">
+            {/* <button className="mx-auto rounded-md border border-white bg-transparent p-3 px-7 text-sm text-white">
               Sign In / Register
-            </button>
+            </button> */}
           </div>
         </div>
       )}
