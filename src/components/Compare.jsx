@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Select from "react-select";
 import { Databases } from "appwrite";
 import client, { DATABASE_ID, COLLECTION_ID } from "../lib/appwrite";
+import { BiBold } from "react-icons/bi";
 
 const Compare = () => {
   const [treks, setTreks] = useState([]);
@@ -11,6 +12,8 @@ const Compare = () => {
   // Fetch trek data from Appwrite
   useEffect(() => {
     const databases = new Databases(client);
+
+      console.log(DATABASE_ID,COLLECTION_ID)
 
     databases
       .listDocuments(DATABASE_ID, COLLECTION_ID)
@@ -204,179 +207,176 @@ const Compare = () => {
 
   return (
     <main>
-      <section className="relative flex h-[80vh] w-full flex-col items-center justify-center bg-[linear-gradient(to_right,rgba(5,29,73,0.9),rgba(35,60,88,0.6)),url('./assets/asset3.png')] bg-cover bg-center bg-no-repeat">
+      <section className="relative flex h-[50vh] w-full flex-col items-center justify-center bg-[linear-gradient(to_right,rgba(5,29,73,0.9),rgba(35,60,88,0.6)),url('./assets/asset3.png')] bg-cover bg-center bg-no-repeat">
         <div className="absolute inset-0 bg-black bg-opacity-[0.37]"></div>
         <div className="relative flex flex-col gap-5 text-center">
-          <h1 className="text-7xl font-semibold text-white">
-            Trekking Community
+          <h1 className=" text-5xl font-semibold text-white">
+          Trek Smarter: Compare Your Options
           </h1>
           <p className="text-xl font-semibold text-white">
-            Don&apos;t Take Trips, Choose Experience
+          Discover the Highlights of Each Trek
           </p>
         </div>
       </section>
-      <section className="bg-gray-100 p-8 py-32">
-        <div className="mt-20 px-20">
-          <div className="rounded-3xl border-2 border-gray-300 bg-white p-10 shadow-lg">
-            <div className="grid grid-cols-4 gap-6">
-              {selectedTreks.map((trek, index) => (
-                <div
-                  key={index}
-                  className="flex flex-col justify-center rounded-lg border bg-gray-50 p-6 text-center shadow-md"
-                >
-                  <div className="flex h-auto items-center justify-center">
-                    {trek ? (
-                      <div></div>
-                    ) : (
-                      <div>
-                        <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full border-2 border-dashed border-gray-400">
-                          <span className="text-gray-400">+</span>
-                        </div>
-                        <p className="text-sm text-gray-400">Add trek</p>
-                      </div>
-                    )}
-                  </div>
-                  <Select
-                    options={treks.map((trek) => ({
-                      value: trek.id,
-                      label: `${trek.name}`,
-                    }))}
-                    onChange={(selectedOption) =>
-                      handleSelect(index, selectedOption)
-                    }
-                    placeholder="Select Trek"
-                    isClearable
-                  />
-                </div>
-              ))}
+      <section className="bg-gray-100">
+        <div className="mt-[1rem] sm:px-6">
+          <div className=" p-5 border  rounded-lg border-1px bg-white">
+          <div className="flex flex-wrap gap-6">
+  {selectedTreks.map((trek, index) => (
+    <div
+      key={index}
+      className="flex flex-col justify-center rounded-lg border bg-gray-50 p-6 text-center shadow-md w-full sm:w-[calc(50%-12px)] md:w-[calc(33.333%-16px)] lg:w-[calc(25%-18px)]"
+    >
+      <div className="flex h-auto items-center justify-center">
+        {trek ? (
+          <div></div>
+        ) : (
+          <div>
+            <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full border-2 border-dashed border-gray-400">
+              <span className="text-gray-400">+</span>
             </div>
+            <p className="text-sm text-gray-400 pb-1">Add trek</p>
+          </div>
+        )}
+      </div>
+      <Select
+        options={treks.map((trek) => ({
+          value: trek.id,
+          label: `${trek.name}`,
+        }))}
+        onChange={(selectedOption) => handleSelect(index, selectedOption)}
+        placeholder="Select Trek"
+        isClearable
+      />
+    </div>
+  ))}
+</div>
+
             {trekDetails.some((detail) => detail) && (
               <div className="mt-12 overflow-x-auto">
                 <h2 className="mb-6 text-center text-2xl font-bold text-[#324B4C]">
                   Comparison Result
                 </h2>
-                <table className="w-full table-auto border-collapse rounded-2xl border border-gray-200 text-left shadow-md">
-                  <thead>
-                    <tr className="bg-gray-200 text-[#2b4142]">
-                      <th className="border border-gray-300 px-6 py-4">
-                        Field
-                      </th>
-                      {trekDetails.map(
-                        (trek, index) =>
-                          trek && (
-                            <th
-                              key={index}
-                              className="border border-gray-300 px-6 py-4 text-center"
-                            >
-                              {trek.name}
-                            </th>
-                          ),
-                      )}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {[
-                      { label: "Name", key: "name" },
-                      { label: "Price", key: "price", unit: "₹" },
-                      {
-                        label: "Details/Book",
-                        key: "url",
-                        formatter: (url) =>
-                          url ? (
-                            <div
-                              style={{
-                                textAlign: "center",
-                                margin: "auto",
-                                backgroundColor: "#324B4C",
-                                padding: "10px",
-                                borderRadius: "0.5rem",
-                                maxWidth: "10rem",
-                              }}
-                            >
-                              <a
-                                href={url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                style={{
-                                  color: "#fff",
-                                  fontWeight: "bold",
-                                  textDecoration: "none",
-                                }}
-                              >
-                                Details/Book
-                              </a>
-                            </div>
-                          ) : (
-                            "N/A"
-                          ),
-                      },
+                <div className="w-full overflow-x-auto  shadow-md">
+  <table className="w-full table-auto border-collapse border border-gray-200 text-left">
+    <thead>
+      <tr className="bg-gray-200 text-[#2b4142]">
+        <th className="border border-gray-300 px-6 py-4">Track Name</th>
+        {trekDetails.map(
+          (trek, index) =>
+            trek && (
+              <th
+                key={index}
+                className="border border-gray-300 px-6 py-4 text-center"
+              >
+                {trek.name}
+              </th>
+            ),
+        )}
+      </tr>
+    </thead>
+    <tbody>
+      {[
+        { label: "Price", key: "price", unit: "₹" },
+        {
+          label: "Details/Book",
+          key: "url",
+          formatter: (url) =>
+            url ? (
+              <div
+                style={{
+                  textAlign: "center",
+                  margin: "auto",
+                  backgroundColor: "#85d4d6",
+                  padding: "10px",
+                  borderRadius: "0.5rem",
+                  maxWidth: "10rem",
+                }}
+              >
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: "white",
+                    fontWeight: "bold",
+                    textDecoration: "none",
+                  }}
+                >
+                  Details/Book
+                </a>
+              </div>
+            ) : (
+              "N/A"
+            ),
+        },
+        { label: "Duration", key: "duration" },
+        { label: "Distance", key: "distance" },
+        { label: "Altitude", key: "altitude" },
+        {
+          label: "Start & End Point",
+          key: "startEnd",
+          formatter: (val, trek) => `${trek.start} - ${trek.end}`,
+        },
+        {
+          label: "Grade & Difficulty",
+          key: "grade",
+          formatter: (grade) =>
+            grade && (
+              <div className="flex items-center justify-center gap-2">
+                {getDifficultySVG(grade)}
+                <span>{grade}</span>
+              </div>
+            ),
+        },
+        {
+          label: "Inclusions",
+          key: "inclusion",
+          formatter: (val) =>
+            val && (
+              <ul className="ml-4 list-disc text-left">
+                {val.map((item, idx) => (
+                  <li key={idx}>{item}</li>
+                ))}
+              </ul>
+            ),
+        },
+        {
+          label: "Exclusions",
+          key: "exclusion",
+          formatter: (val) =>
+            val && (
+              <ul className="ml-4 list-disc text-left">
+                {val.map((item, idx) => (
+                  <li key={idx}>{item}</li>
+                ))}
+              </ul>
+            ),
+        },
+      ].map((field) => (
+        <tr
+          key={field.key}
+          className="text-[#324B4C] odd:bg-white even:bg-gray-50"
+        >
+          <td className="border border-gray-300 px-6 py-4 font-medium">
+            {field.label}
+          </td>
+          {trekDetails.map((trek, index) => (
+            <td
+              key={index}
+              className="border border-gray-300 px-6 py-4 text-center"
+            >
+              {trek && field.formatter
+                ? field.formatter(trek[field.key], trek)
+                : trek && `${field.unit || ""} ${trek[field.key]}`}
+            </td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
 
-                      { label: "Duration", key: "duration" },
-                      { label: "Distance", key: "distance" },
-                      { label: "Altitude", key: "altitude" },
-                      {
-                        label: "Start & End Point",
-                        key: "startEnd",
-                        formatter: (val, trek) => `${trek.start} - ${trek.end}`,
-                      },
-                      {
-                        label: "Grade & Difficulty",
-                        key: "grade",
-                        formatter: (grade) =>
-                          grade && (
-                            <div className="flex items-center justify-center gap-2">
-                              {getDifficultySVG(grade)}
-                              <span>{grade}</span>
-                            </div>
-                          ),
-                      },
-                      {
-                        label: "Inclusions",
-                        key: "inclusion",
-                        formatter: (val) =>
-                          val && (
-                            <ul className="ml-4 list-disc text-left">
-                              {val.map((item, idx) => (
-                                <li key={idx}>{item}</li>
-                              ))}
-                            </ul>
-                          ),
-                      },
-                      {
-                        label: "Exclusions",
-                        key: "exclusion",
-                        formatter: (val) =>
-                          val && (
-                            <ul className="ml-4 list-disc text-left">
-                              {val.map((item, idx) => (
-                                <li key={idx}>{item}</li>
-                              ))}
-                            </ul>
-                          ),
-                      },
-                    ].map((field) => (
-                      <tr
-                        key={field.key}
-                        className="text-[#324B4C] odd:bg-white even:bg-gray-50"
-                      >
-                        <td className="border border-gray-300 px-6 py-4 font-medium">
-                          {field.label}
-                        </td>
-                        {trekDetails.map((trek, index) => (
-                          <td
-                            key={index}
-                            className="border border-gray-300 px-6 py-4 text-center"
-                          >
-                            {trek && field.formatter
-                              ? field.formatter(trek[field.key], trek)
-                              : trek &&
-                                `${field.unit || ""} ${trek[field.key]}`}
-                          </td>
-                        ))}
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
               </div>
             )}
           </div>
