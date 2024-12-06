@@ -100,7 +100,7 @@ const Navbar = () => {
           </ul>
           <div className="mt-5 flex flex-col gap-3">
             <button className="mx-auto rounded-md bg-white p-3 px-7 text-sm text-[#324B4C]">
-              Become An Expert
+              Book Your Experience
             </button>
             {/* <button className="mx-auto rounded-md border border-white bg-transparent p-3 px-7 text-sm text-white">
               Sign In / Register
