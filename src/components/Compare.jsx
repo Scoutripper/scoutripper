@@ -242,7 +242,7 @@ const Compare = () => {
       {/* Comparison Table */}
 {/* Comparison Table */}
 {selectedTreks.length > 0 && (
-  <div className="mt-12 overflow-x-auto">
+  <div className="overflow-x-auto">
     <h2 className="mb-6 text-center text-2xl font-bold text-[#324B4C]">
       Comparison Result
     </h2>
@@ -256,7 +256,7 @@ const Compare = () => {
         key={index}
         className="border border-gray-300 px-6 py-4 text-center"
       >
-        <div className="w-full max-w-[200px] mx-auto">
+        <div className="w-full mx-auto">
           <Select
             options={treks.map((trek) => ({
               value: trek.id,

@@ -49,7 +49,7 @@ const Navbar = () => {
               <a href="https://scoutripper.com/blog/explore/" className=" font-sans">Explore</a>
             </li>
             <li>
-              <a href="https://scoutripper.com/page/cleanup-drive" className=" font-sans"> Drive</a>
+              <a href="https://scoutripper.com/page/cleanup-drive" className=" font-sans">Cleanup Drive</a>
             </li>
             <li>
               <a href="https://scoutripper.com/blog/trekking-essentials-guide/" className=" font-sans">Trek Essentials</a>
